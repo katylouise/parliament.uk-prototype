@@ -1,14 +1,9 @@
 class ConstituenciesController < ApplicationController
   def index
     letter_data = parliament_request.constituencies.a_z_letters.get
-<<<<<<< HEAD
-
-    @constituencies = parliament_request.constituencies.get.sort_by(:name)
-=======
     data = parliament_request.constituencies.get
 
     @constituencies = data.filter('http://id.ukpds.org/schema/ConstituencyGroup').sort_by(:name)
->>>>>>> 7a2d1c47b577aa5ce4abf1aa26d7e3121452a559
     @letters = letter_data.map(&:value)
   end
 
