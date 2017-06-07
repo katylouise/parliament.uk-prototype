@@ -32,6 +32,13 @@ class PeopleController < ApplicationController
 
     @person = @person.first
 
+    person_image_id = @person.personImageId
+    person_image_base64_response = Parliament::Request::BaseRequest.new(
+      base_url:   "http://localhost:5000/api/v1/images/#{person_image_id}",
+      builder:    Parliament::Builder::BaseResponseBuilder).get
+
+    @base64_image = person_image_base64_response.response.body
+
     @current_party_membership = @person.party_memberships.select(&:current?).first
 
     sorted_incumbencies = Parliament::NTriple::Utils.sort_by({

@@ -2,6 +2,8 @@
   .container
     %h1= title(@person.display_name)
 
+    =image_tag("data:image/jpeg;base64,#{@base64_image}")
+
     - if @most_recent_incumbency.nil? || @most_recent_incumbency.house.name == 'House of Lords'
       %p= @person.full_title
       %p= "#{@person.full_name}" unless @person.display_name == @person.full_name
